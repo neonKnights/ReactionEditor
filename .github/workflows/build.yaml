@@ -1,0 +1,37 @@
+name: Test project
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  buildAllModes:
+    name: Test in ${{ matrix.testMode }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          lfs: true
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-ReactionEditor
+          restore-keys: |
+            Library-
+      - uses: game-ci/unity-builder@v2
+        id: tests
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          targetPlatform: WebGL
+      - run: |
+        git add .
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -m "Update WebGL build"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: docs
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
