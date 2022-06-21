@@ -21,9 +21,14 @@ namespace Game.Reactions
     
         private void Reset()
         {
-#if UNITY_EDITOR
-            var file = File.ReadAllBytes("Assets/Game/Reactions/Resources/stats.csv");
-            var text = file.Aggregate("", (current, c) => current + (char)c);
+            var file = Resources.Load("stats") as TextAsset;
+            if (file == null)
+            {
+                Debug.LogError("File not loaded!");
+                return;
+            }
+
+            var text = file.text.Aggregate("", (current, c) => current + (char)c);
             var lines = text.Split('\n');
             foreach (var line in lines)
             {
@@ -43,7 +48,6 @@ namespace Game.Reactions
 
                 this.SubstanceStats[tiles[0]] = newStats;
             }
-#endif
         }
     }
 }

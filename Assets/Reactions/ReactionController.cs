@@ -23,12 +23,22 @@ namespace Game.Reactions
 
         private void Reset()
         {
-            #if UNITY_EDITOR
-            var file = File.ReadAllBytes("Assets/Reactions/Resources/reactions.txt");
-            var text = file.Aggregate("", (current, c) => current + (char)c);
+            var file = Resources.Load("reactions") as TextAsset;
+            if (file == null)
+            {
+                Debug.LogError("File not loaded!");
+                return;
+            }
+
+            var text = file.text;
             var lines = text.Split('\n');
             foreach (var line in lines)
             {
+                if (line.Length < 2)
+                {
+                    return;
+                }
+                
                 if (line[0] == '/' && line[1] == '/')
                 {
                     continue;
@@ -45,7 +55,6 @@ namespace Game.Reactions
                 resultsList.Sort();
                 this.ReactionRegister.Add(substratsList, resultsList);
             }
-            #endif
         }
 
         private void Awake()
