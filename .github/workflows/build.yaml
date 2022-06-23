@@ -25,8 +25,7 @@ jobs:
           targetPlatform: WebGL
           buildPath: docs
       - run: |
-          ls ..
-          ls .
+          mv build docs
           git add docs
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
@@ -36,5 +35,6 @@ jobs:
         with:
           branch: docs
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
 
 
