@@ -29,6 +29,7 @@ jobs:
           buildPath: docs
       - name: move and commit
         run: |
+          mkdir docs
           mv build/WebGL/WebGL/* docs/
           git add docs
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
