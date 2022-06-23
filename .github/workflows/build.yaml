@@ -4,27 +4,31 @@ on:
   workflow_dispatch:
 
 jobs:
-  buildAllModes:
-    name: Test in ${{ matrix.testMode }}
+  buildWebGLApp:
+    name: Deploy WebGL version
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        name: checkout code
         with:
           lfs: true
       - uses: actions/cache@v2
+        name: cache Library folder
         with:
           path: Library
           key: Library-ReactionEditor
           restore-keys: |
             Library-
       - uses: game-ci/unity-builder@v2
+        name: Build WebGL
         id: tests
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: WebGL
           buildPath: docs
-      - run: |
+      - name: move and commit
+        run: |
           mv build/WebGL/WebGL/* docs/
           git add docs
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
