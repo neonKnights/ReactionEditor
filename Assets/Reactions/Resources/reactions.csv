@@ -1,4 +1,4 @@
-// scheme:
+// scheme:,
 // substrate1 + substrate2 -, result
 2K + 2H2O , 2KOH + H2
 2Na + 2H2O , 2NaOH + H2
@@ -15,7 +15,7 @@ Mg + Cl2 , MgCl2
 P4O10 + 6H2O , 4H3PO4
 Ca + Cl2 , CaCl2
 2Ca + O2 , 2CaO
-// 
+// trotyl:,
 2C + H2 , C2H2
 2C + O2 , 2CO
 CO + 2H2 , CH3OH
