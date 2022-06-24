@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using pkg.generic_serializable_dictionary.Scripts;
@@ -21,6 +22,11 @@ namespace Game.Reactions
         Stack<List<Substance>> result;
 
         private void OnValidate()
+        {
+            this.UpdateList();
+        }
+
+        private void UpdateList()
         {
             var file = Resources.Load("reactions") as TextAsset;
             if (file == null)
@@ -58,8 +64,7 @@ namespace Game.Reactions
 
         private void Awake()
         {
-            var file = Resources.Load("Assets/Game/Manager/Resources/reactions.txt");
-            Debug.Log(file);
+            this.UpdateList();
         }
         
         // @Garnn co to robi???
