@@ -321,6 +321,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ReactionRegister:
     list:
+    - Key: []
+      Value: []
     - Key:
       - count: 2
         molecule: H2O

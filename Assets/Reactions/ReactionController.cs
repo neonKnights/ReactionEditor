@@ -20,7 +20,7 @@ namespace Game.Reactions
         
         Stack<List<Substance>> result;
 
-        private void Reset()
+        private void OnValidate()
         {
             var file = Resources.Load("reactions") as TextAsset;
             if (file == null)
@@ -45,7 +45,7 @@ namespace Game.Reactions
                 
                 var currentLine = line;
                 currentLine = currentLine.Replace(" ", string.Empty);
-                var splited = currentLine.Split('>');
+                var splited = currentLine.Split(',');
                 var substrats = splited[0];
                 var substratsList = substrats.Split('+').Select(s => Substance.FromString(s)).ToList();
                 substratsList.Sort();

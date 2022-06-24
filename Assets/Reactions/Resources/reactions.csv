@@ -1,0 +1,25 @@
+// scheme:
+// substrate1 + substrate2 -, result
+2K + 2H2O , 2KOH + H2
+2Na + 2H2O , 2NaOH + H2
+H2 + Cl2 , 2HCl
+2H2 + O2 , 2H2O
+S + O2 , SO2
+2SO2 + O2 , 2SO3
+SO3 + H2O , H2SO4
+2K + Cl2 , 2KCl
+2Na + Cl2 , 2NaCl
+2Mg + O2 , 2MgO
+Mg + Cl2 , MgCl2
+4P + 5O2 , P4O10
+P4O10 + 6H2O , 4H3PO4
+Ca + Cl2 , CaCl2
+2Ca + O2 , 2CaO
+// 
+2C + H2 , C2H2
+2C + O2 , 2CO
+CO + 2H2 , CH3OH
+3C2H2 , C6H6
+C6H6 + CH3OH , C6H5CH3 + H2O
+N + O2 , NO2
+2C6H5CH3 + 6NO2 , 2C6H2(NO2)3CH3 + 3H2
