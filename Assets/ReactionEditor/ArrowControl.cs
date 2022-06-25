@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.Town.ReactionEditor
 {
@@ -13,16 +14,22 @@ namespace Game.Town.ReactionEditor
         private RectTransform rect;
         private int multip, add;
 
+
+        private Vector2 scale;
+
         private void Awake()
         {
             this.rect = this.gameObject.GetComponent<RectTransform>();
+            var currentResolution = GetComponentInParent<Canvas>().renderingDisplaySize;
+            var designedSize = this.GetComponentInParent<CanvasScaler>().referenceResolution;
+            this.scale = designedSize / currentResolution;
         }
 
         public void updateArrow()
         {
             var delta = new Vector2(
-                this.origin.transform.position.x - this.target.transform.position.x,
-                this.origin.transform.position.y - this.target.transform.position.y);
+                this.origin.transform.position.x*this.scale.x - this.target.transform.position.x*this.scale.x,
+                this.origin.transform.position.y*this.scale.y - this.target.transform.position.y*this.scale.y);
         
             var originModifier = GetLengthModifier(delta, this.origin.GetComponent<RectTransform>());
             var targetModifier = GetLengthModifier(delta, this.target.GetComponent<RectTransform>());
@@ -42,12 +49,12 @@ namespace Game.Town.ReactionEditor
             var arrowSize = this.rect.sizeDelta;
             arrowSize.x = Mathf.Sqrt(delta.x * delta.x + delta.y * delta.y);
 
-            if (originModifier.magnitude < delta.magnitude)
+            if (originModifier.magnitude< delta.magnitude)
             {
                 arrowSize.x -= originModifier.magnitude;
             }
         
-            if (targetModifier.magnitude < delta.magnitude)
+            if (targetModifier.magnitude< delta.magnitude)
             {
                 arrowSize.x -= targetModifier.magnitude;
             }
