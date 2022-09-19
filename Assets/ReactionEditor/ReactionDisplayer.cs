@@ -68,7 +68,10 @@ namespace Game.Town.ReactionEditor
             foreach (List<Substance> result in this.reactionResults)
             {
                 var output = result.Aggregate("", (current, sub) => current + (sub + "+"));
-                output = output.Remove(output.Length - 1);
+                if (output.Length > 0)
+                {
+                    output = output.Remove(output.Length - 1);
+                }
                 var optionData = new TMP_Dropdown.OptionData(output);
                 outputList.Add(optionData);
             }
